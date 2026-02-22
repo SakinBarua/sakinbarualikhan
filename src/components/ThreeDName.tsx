@@ -3,7 +3,9 @@ import { motion, useAnimation } from 'framer-motion'
 
 // SVG-based extruded text effect to avoid heavy 3D font dependencies.
 const ThreeDName: React.FC = () => {
-  const letters = 'SAKIN BARUA LIKHAN'.split('')
+  const letters = {name.split("").map((letter, index) => (
+  <span key={index}>{letter}</span>
+))}
   const controls = useAnimation()
   const [hovered, setHovered] = useState(false)
 
@@ -82,3 +84,4 @@ const ThreeDName: React.FC = () => {
 }
 
 export default ThreeDName
+
