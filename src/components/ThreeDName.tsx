@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import React, { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 // SVG-based extruded text effect to avoid heavy 3D font dependencies.
 const ThreeDName: React.FC = () => {
-  const letters = {name.split("").map((letter, index) => (
-  <span key={index}>{letter}</span>
-))}
-  const controls = useAnimation()
-  const [hovered, setHovered] = useState(false)
+  const controls = useAnimation();
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     // initial morph animation
-    controls.start({ y: [20, 0], opacity: [0, 1], transition: { duration: 0.9 } })
-  }, [])
+    controls.start({
+      y: [20, 0],
+      opacity: [0, 1],
+      transition: { duration: 0.9 },
+    });
+  }, [controls]);
 
   return (
     <div
@@ -26,9 +27,8 @@ const ThreeDName: React.FC = () => {
         viewBox="0 0 1200 200"
         preserveAspectRatio="xMidYMid meet"
         className="mx-auto"
-        initial={{ y: 0 }}
         animate={{ y: hovered ? -6 : 0 }}
-        transition={{ type: 'spring', stiffness: 60 }}
+        transition={{ type: "spring", stiffness: 60 }}
       >
         <defs>
           <linearGradient id="g1" x1="0%" x2="100%">
@@ -54,7 +54,7 @@ const ThreeDName: React.FC = () => {
               fontFamily="Segoe UI, Roboto, sans-serif"
               fontWeight={900}
               fontSize={72}
-              fill={i === 0 ? 'url(#g1)' : 'rgba(0,0,0,0.06)'}
+              fill={i === 0 ? "url(#g1)" : "rgba(0,0,0,0.06)"}
               transform={`translate(${i * 3},${i * -2})`}
               style={{ letterSpacing: 6 }}
               opacity={i === 0 ? 1 : 0.9}
@@ -71,7 +71,7 @@ const ThreeDName: React.FC = () => {
             fontWeight={900}
             fontSize={72}
             fill="url(#g1)"
-            style={{ letterSpacing: 6, filter: 'url(#blurGlow)' }}
+            style={{ letterSpacing: 6, filter: "url(#blurGlow)" }}
             initial={{ opacity: 0, y: 10 }}
             animate={controls}
           >
@@ -80,8 +80,7 @@ const ThreeDName: React.FC = () => {
         </g>
       </motion.svg>
     </div>
-  )
-}
+  );
+};
 
-export default ThreeDName
-
+export default ThreeDName;
